@@ -21,7 +21,11 @@ def is_duplicated(list: list, value: str):
 URL_TWITTER = 'https://twitter.com/i/flow/login'
 SEARCHS = [
     'preço soja', 'agro soja', 'soja no agro', 
-    'brasil na soja', 'soja no brasil'
+    'brasil na soja', 'soja no brasil', 'soja',
+    'uso da soja', 'soja para alimentos',
+    'alimentos de soja', 'soja faz bem',
+    'soja faz mal', 'aumento da soja',
+    'diminuição da soja'
 ]
 info = {}
 
@@ -49,7 +53,11 @@ for search in SEARCHS:
 
     text_posts = ''
     for i in div_all_posts:
-        text_posts += i.text
+        try:
+            text = i.text
+            text_posts += text
+        except Exception:
+            continue
 
     text_posts = [x for x in text_posts.split('\n') if x != '' and len(x) > 3 and not x[0].isdigit() and not x.startswith('@')]
 
